@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ГОЗОН - Магазин дачных товаров</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="auth-container" class="container">
+        <h1>ГОЗОН</h1>
+        <div class="auth-forms">
+            <div id="login-form">
+                <h2>Вход</h2>
+                <form onsubmit="return login(event)">
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Пароль" required>
+                    <button type="submit">Войти</button>
+                </form>
+                <p>Нет аккаунта? <a href="#" onclick="toggleForms()">Зарегистрироваться</a></p>
+            </div>
+
+            <div id="register-form" style="display: none;">
+                <h2>Регистрация</h2>
+                <form onsubmit="return register(event)">
+                    <input type="text" id="register-name" placeholder="Имя" required>
+                    <input type="email" id="register-email" placeholder="Email" required>
+                    <input type="password" id="register-password" placeholder="Пароль" required>
+                    <button type="submit">Зарегистрироваться</button>
+                </form>
+                <p>Уже есть аккаунт? <a href="#" onclick="toggleForms()">Войти</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-container" class="container">
+        <header>
+            <div class="header-left">
+                <h1 onclick="showMainPage()" style="cursor: pointer;">ГОЗОН</h1>
+            </div>
+            <div class="header-right">
+                <div class="cart-indicator">
+                    <a href="#" onclick="showCart(); return false;">🛒</a>
+                    <span id="cart-count">0</span>
+                </div>
+                <button onclick="showProfile()">Личный кабинет</button>
+                <button onclick="logout()" id="logout-btn">Выйти</button>
+                <!--<button onclick="showLoginForm()" id="login-btn">Войти</button>-->
+            </div>
+        </header>
+        <div class="products-grid" id="products-container">
+            <!-- Товары будут добавлены через JavaScript -->
+        </div>
+    </div>
+
+    <div id="profile-container" class="container" style="display: none;">
+        <div class="profile-header">
+            <button class="back-btn" onclick="showMainPage()">← Вернуться в магазин</button>
+            <h2>Личный кабинет</h2>
+        </div>
+        
+        <div class="profile-section">
+            <h3>Профиль</h3>
+            <div class="avatar-section">
+                <img id="avatar-preview" src="/avatars/default.png" alt="Аватар">
+                <input type="file" id="avatar-input" accept="image/*">
+                <button onclick="uploadAvatar()">Загрузить аватар</button>
+            </div>
+            <form id="profile-form" onsubmit="return updateProfile(event)">
+                <input type="text" id="profile-name" placeholder="Имя">
+                <input type="email" id="profile-email" placeholder="Email" readonly>
+                <input type="password" id="profile-password" placeholder="Новый пароль">
+                <button type="submit">Сохранить изменения</button>
+            </form>
+        </div>
+
+        <div class="profile-section">
+            <h3>Адреса доставки</h3>
+            <div id="addresses-list"></div>
+            <form id="address-form" onsubmit="return addAddress(event)">
+                <input type="text" id="address-street" placeholder="Адрес" required>
+                <input type="text" id="address-city" placeholder="Город" required>
+                <input type="text" id="address-postal" placeholder="Индекс" required>
+                <button type="submit">Добавить адрес</button>
+            </form>
+        </div>
+
+        <div class="profile-section">
+            <h3>Способы оплаты</h3>
+            <div id="payment-methods-list"></div>
+            <form id="payment-form" onsubmit="return addPaymentMethod(event)">
+                <select id="payment-type" required>
+                    <option value="CASH">Наличные</option>
+                    <option value="CARD">Карта</option>
+                </select>
+                <input type="text" id="card-number" placeholder="Номер карты (5 цифр)" pattern="\d{5}" style="display: none">
+                <button type="submit">Добавить способ оплаты</button>
+            </form>
+        </div>
+
+        <div class="profile-section">
+            <h3>История заказов</h3>
+            <div id="orders-list"></div>
+        </div>
+    </div>
+
+    <div id="cart-container" class="container" style="display: none;">
+        <div class="cart-header">
+            <button class="back-btn" onclick="showMainPage()">← Вернуться в магазин</button>
+            <h2>Корзина</h2>
+        </div>
+
+        <div class="cart-content">
+            <div id="cart-items" class="cart-items">
+                <!-- Товары будут добавлены через JavaScript -->
+            </div>
+
+            <div id="cart-summary" class="cart-summary" style="display: none;">
+                <div class="cart-comment">
+                    <h3>Комментарий к заказу</h3>
+                    <textarea id="cart-comment" placeholder="Добавьте комментарий к заказу"></textarea>
+                </div>
+
+                <div class="delivery-section">
+                    <h3>Способ доставки</h3>
+                    <div class="method-option">
+                        <input type="radio" id="delivery-courier" name="delivery" value="courier">
+                        <label for="delivery-courier">
+                            <span class="method-name">Курьером</span>
+                            <span class="method-price">300 ₽</span>
+                        </label>
+                    </div>
+                    <div class="method-option">
+                        <input type="radio" id="delivery-pickup" name="delivery" value="pickup">
+                        <label for="delivery-pickup">
+                            <span class="method-name">Самовывоз</span>
+                            <span class="method-price">0 ₽</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <h3>Способ оплаты</h3>
+                    <div class="method-option">
+                        <input type="radio" id="payment-card" name="payment" value="card">
+                        <label for="payment-card">Банковской картой</label>
+                    </div>
+                    <div class="method-option">
+                        <input type="radio" id="payment-cash" name="payment" value="cash">
+                        <label for="payment-cash">Наличными при получении</label>
+                    </div>
+                </div>
+
+                <div class="cart-totals">
+                    <p>Стоимость товаров: <span id="subtotal">0</span> ₽</p>
+                    <p>Доставка: <span id="delivery-cost">0</span> ₽</p>
+                    <h3>Итого: <span id="total">0</span> ₽</h3>
+                </div>
+
+                <div class="cart-actions">
+                    <button onclick="clearCart()" class="clear-cart-btn">Очистить корзину</button>
+                    <button onclick="checkout()" class="checkout-btn">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="empty-cart-message" class="empty-cart-message" style="display: none;">
+            <div class="empty-cart-content">
+                <span class="empty-cart-icon">🛒</span>
+                <h3>Ваша корзина пуста</h3>
+                <p>Добавьте товары в корзину, чтобы сделать заказ</p>
+                <button onclick="showMainPage()" class="back-to-shop-btn">Перейти к покупкам</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/wishlist.js"></script>
+    <script src="js/orders.js"></script>
+</body>
+</html> 

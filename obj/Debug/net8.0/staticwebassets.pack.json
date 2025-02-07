@@ -1,0 +1,57 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\site\\Gozon\\wwwroot\\avatars\\1_1a068cee-43a7-4cae-b884-0298a79cefd2.jpg",
+      "PackagePath": "staticwebassets\\avatars\\1_1a068cee-43a7-4cae-b884-0298a79cefd2.jpg"
+    },
+    {
+      "Id": "C:\\site\\Gozon\\wwwroot\\avatars\\3_a6de2961-2c3c-4b85-9884-02b4512114c9.jpg",
+      "PackagePath": "staticwebassets\\avatars\\3_a6de2961-2c3c-4b85-9884-02b4512114c9.jpg"
+    },
+    {
+      "Id": "C:\\site\\Gozon\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "C:\\site\\Gozon\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\site\\Gozon\\wwwroot\\js\\auth.js",
+      "PackagePath": "staticwebassets\\js\\auth.js"
+    },
+    {
+      "Id": "C:\\site\\Gozon\\wwwroot\\js\\cart.js",
+      "PackagePath": "staticwebassets\\js\\cart.js"
+    },
+    {
+      "Id": "C:\\site\\Gozon\\wwwroot\\js\\orders.js",
+      "PackagePath": "staticwebassets\\js\\orders.js"
+    },
+    {
+      "Id": "C:\\site\\Gozon\\wwwroot\\js\\script.js",
+      "PackagePath": "staticwebassets\\js\\script.js"
+    },
+    {
+      "Id": "C:\\site\\Gozon\\wwwroot\\js\\wishlist.js",
+      "PackagePath": "staticwebassets\\js\\wishlist.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Gozon.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Gozon.props",
+      "PackagePath": "build\\Gozon.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Gozon.props",
+      "PackagePath": "buildMultiTargeting\\Gozon.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Gozon.props",
+      "PackagePath": "buildTransitive\\Gozon.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

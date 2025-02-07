@@ -1,0 +1,6 @@
+@Gozon_HostAddress = http://localhost:5286
+
+GET {{Gozon_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

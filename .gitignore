@@ -1,0 +1,21 @@
+# .NET Core
+bin/
+obj/
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Database
+*.db
+*.db-shm
+*.db-wal
+
+# Environment
+appsettings.Development.json
